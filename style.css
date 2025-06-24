@@ -1,0 +1,61 @@
+body{
+    background-color: rgb(150, 200, 250);
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button{
+    width: 150px;
+    height: 80px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    border: solid 1px black;
+    cursor: pointer;
+    font-size: xx-large;
+}
+#sim{
+    background-color: rgb(0, 120, 0);
+}
+#nao{
+    background-color: rgb(120, 0, 0);
+}
+#buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+
+#sim:hover{
+    scale: 110%;
+    background-color: rgb(0, 160, 0);
+}
+
+#nao:hover{
+    scale: 110%;
+    background-color: rgb(160, 0, 0);
+}
+
+#sim:active, #nao:active {
+    scale: 90%;
+}
+
+#divR{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#resposta{
+    color: rgb(192, 106, 0);
+}
+
+#pergunta {
+    text-align: center;
+}
