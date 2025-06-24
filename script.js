@@ -6,9 +6,6 @@ const nn = document.getElementById("nao");
 let etapa = 0;
 let genero = null;
 let maisNovo = null;
-let filhoDaTiaOuTio = null;
-let irmaoDaMae = null;
-let primoMaisVelhoQuePai = null;
 
 function pergunta(texto) {
     perguntaa.textContent = texto;
@@ -18,6 +15,7 @@ function pergunta(texto) {
 function resposta(texto) {
     respostaa.textContent = "O familiar é: " + texto;
     perguntaa.textContent = "";
+    document.getElementById("buttons").style.display = "none";
 }
 
 function proximaEtapa(res) {
@@ -31,11 +29,11 @@ function proximaEtapa(res) {
         case 1:
             maisNovo = res;
             if (maisNovo) {
-                pergunta("Essa pessoa é filha da sua mãe?");
+                pergunta("Essa pessoa é filha dos seus pais?");
                 etapa = 2;
             } else {
-                pergunta("Essa pessoa é primo(a)?");
-                etapa = 6;
+                pergunta("Essa pessoa é irmã(o) dos seus pais?");
+                etapa = 3;
             }
             break;
 
@@ -43,17 +41,15 @@ function proximaEtapa(res) {
             if (res) {
                 resposta(genero ? "Sua irmã" : "Seu irmão");
             } else {
-                pergunta("Essa pessoa é filha da sua tia ou tio?");
-                etapa = 3;
+                resposta(genero ? "Sua prima" : "Seu primo");
             }
             break;
 
         case 3:
-            filhoDaTiaOuTio = res;
-            if (filhoDaTiaOuTio) {
-                resposta(genero ? "Sua prima" : "Seu primo");
+            if (res) {
+                resposta(genero ? "Sua tia" : "Seu tio");
             } else {
-                pergunta("Essa pessoa é mãe/pai da sua mãe?");
+                pergunta("Essa pessoa é pai/mãe dos seus pais?");
                 etapa = 4;
             }
             break;
@@ -62,27 +58,7 @@ function proximaEtapa(res) {
             if (res) {
                 resposta(genero ? "Sua avó" : "Seu avô");
             } else {
-                pergunta("Essa pessoa é irmã(o) da sua mãe?");
-                etapa = 5;
-            }
-            break;
-
-        case 5:
-            irmaoDaMae = res;
-            if (irmaoDaMae) {
-                resposta(genero ? "Sua tia" : "Seu tio");
-            } else {
                 resposta(genero ? "Sua mãe" : "Seu pai");
-            }
-            break;
-
-        case 6:
-            primoMaisVelhoQuePai = res;
-            if (primoMaisVelhoQuePai) {
-                resposta(genero ? "Sua prima" : "Seu primo");
-            } else {
-                pergunta("Essa pessoa é irmã(o) da sua mãe?");
-                etapa = 5;
             }
             break;
     }
